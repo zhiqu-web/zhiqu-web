@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhiqu.mapper.QuestionsMapper" >
+  <resultMap id="BaseResultMap" type="com.zhiqu.model.Questions" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+    <result column="member" property="member" jdbcType="VARCHAR" />
+    <result column="replay" property="replay" jdbcType="VARCHAR" />
+    <result column="replayer" property="replayer" jdbcType="VARCHAR" />
+    <result column="replaytime" property="replaytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, content, addtime, member, replay, replayer, replaytime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from question
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectQuestions" resultMap="BaseResultMap">
+  	select * from question
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from question
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhiqu.model.Questions" >
+    insert into question (id, title, content, 
+      addtime, member, replay, 
+      replayer, replaytime)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{addtime,jdbcType=VARCHAR}, #{member,jdbcType=VARCHAR}, #{replay,jdbcType=VARCHAR}, 
+      #{replayer,jdbcType=VARCHAR}, #{replaytime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiqu.model.Questions" >
+    insert into question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="member != null" >
+        member,
+      </if>
+      <if test="replay != null" >
+        replay,
+      </if>
+      <if test="replayer != null" >
+        replayer,
+      </if>
+      <if test="replaytime != null" >
+        replaytime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="member != null" >
+        #{member,jdbcType=VARCHAR},
+      </if>
+      <if test="replay != null" >
+        #{replay,jdbcType=VARCHAR},
+      </if>
+      <if test="replayer != null" >
+        #{replayer,jdbcType=VARCHAR},
+      </if>
+      <if test="replaytime != null" >
+        #{replaytime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiqu.model.Questions" >
+    update question
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="member != null" >
+        member = #{member,jdbcType=VARCHAR},
+      </if>
+      <if test="replay != null" >
+        replay = #{replay,jdbcType=VARCHAR},
+      </if>
+      <if test="replayer != null" >
+        replayer = #{replayer,jdbcType=VARCHAR},
+      </if>
+      <if test="replaytime != null" >
+        replaytime = #{replaytime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiqu.model.Questions" >
+    update question
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      member = #{member,jdbcType=VARCHAR},
+      replay = #{replay,jdbcType=VARCHAR},
+      replayer = #{replayer,jdbcType=VARCHAR},
+      replaytime = #{replaytime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates class="array">
+
+    <template key="back.newsBackList">
+        <requestUrl>/newsBackList</requestUrl>
+        <templateRequestType>POST</templateRequestType>
+    </template>
+
+</templates>
